@@ -1,0 +1,1 @@
+Doing some stuff database manager thing with Vue + Rust + Typescript + Tauri.
