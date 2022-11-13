@@ -1,5 +1,5 @@
 enum ConnectionTypes {
-    Mongo, Postgres, Redis
+    Mongo, Postgres, Redis, None
 }
 
 export {
