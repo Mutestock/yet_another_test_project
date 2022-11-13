@@ -6,7 +6,11 @@
 mod commands;
 mod connection;
 
-use commands::mongo_commands::{ping_mongo};
+use commands::{
+    mongo_commands::ping_mongo,
+    pg_commands::ping_postgres,
+    redis_commands::ping_redis,
+};
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -16,7 +20,7 @@ fn greet(name: &str) -> String {
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, ping_mongo])
+        .invoke_handler(tauri::generate_handler![greet, ping_mongo, ping_postgres, ping_redis])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

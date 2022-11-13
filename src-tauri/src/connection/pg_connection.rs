@@ -26,13 +26,24 @@ impl PgConnector {
     }
 
     pub async fn get_pool(&self) -> Result<PgPool, sqlx::error::Error> {
-        PgPoolOptions::new().max_connections(5).connect(
-            format!(
-                "postgres://{}:{}@{}:{}/{}",
-                self.username, self.password, self.host, self.port, self.database
+        PgPoolOptions::new()
+            .max_connections(5)
+            .connect(
+                format!(
+                    "postgres://{}:{}@{}:{}/{}",
+                    self.username, self.password, self.host, self.port, self.database
+                )
+                .as_str()
+                .as_ref(),
             )
-            .as_str()
-            .as_ref(),
-        ).await
+            .await
+    }
+
+    pub async fn ping(&self) -> Result<bool, sqlx::error::Error> {
+        let connection_established = match self.get_pool().await {
+            Ok(_) => true,
+            Err(_) => false,
+        };
+        Ok(connection_established)
     }
 }

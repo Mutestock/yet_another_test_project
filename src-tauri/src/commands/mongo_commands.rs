@@ -1,6 +1,4 @@
-
 use crate::connection::mongo_connection::MongoConnector;
-
 
 #[tauri::command]
 pub async fn ping_mongo(
