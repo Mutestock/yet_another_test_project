@@ -9,17 +9,17 @@ const host = ref("")
 const port = ref("")
 const pingResult = ref("")
 
-async function pingMongo(){
+async function pingMongo() {
     let res: boolean = await invoke("ping_mongo", {
         username: username.value,
         password: password.value,
         host: host.value,
         port: port.value
     });
-    if(res){
+    if (res) {
         pingResult.value = "Connected successfully";
     }
-    else{
+    else {
         pingResult.value = "Failed to connect"
     }
 }
@@ -28,11 +28,11 @@ async function pingMongo(){
 
 <template>
     <div class="card">
-        <input id="username-input" v-model="username" placeholder="Mongo Username"/>
-        <input id="password-input" v-model="password" placeholder="Mongo Password"/>
-        <input id="host-input" v-model="host" placeholder="Mongo Host"/>
-        <input id="port-input" v-model="port" placeholder="Mongo Port"/>
-        <button type="button" @click = pingMongo()>Ping Mongo</button>
+        <input id="username-input" v-model="username" placeholder="Username" />
+        <input id="password-input" v-model="password" placeholder="Password" type="password"/>
+        <input id="host-input" v-model="host" placeholder="Host" />
+        <input id="port-input" v-model="port" placeholder="Port" />
+        <button type="button" @click=pingMongo()>Ping Mongo</button>
     </div>
     <p>{{ pingResult }}</p>
 </template>
