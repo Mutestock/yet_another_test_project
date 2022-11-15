@@ -1,4 +1,6 @@
+
 use mongodb::{bson::doc, options::ClientOptions, Client, Database};
+use crate::connection::common::{ConnectionType, DatabaseConnection};
 
 pub struct MongoConnector {
     username: String,
@@ -7,6 +9,7 @@ pub struct MongoConnector {
     port: u16,
     database: String,
     client: Option<Client>,
+    connection_type: ConnectionType,
 }
 
 const CONNECTION_EXPECT_MESSAGE: &str = "Connection settings have been defined";
@@ -26,6 +29,7 @@ impl MongoConnector {
             port,
             database,
             client: None,
+            connection_type: ConnectionType::Mongo
         }
     }
 
@@ -39,7 +43,7 @@ impl MongoConnector {
         Ok(self)
     }
 
-    pub async fn ping(&self) -> Result<bool, mongodb::error::Error> {
+    pub async fn ping(&self) -> Result<bool, Box<dyn std::error::Error>> {
         let client = self.client.as_ref().expect(CONNECTION_EXPECT_MESSAGE);
 
         client
@@ -79,5 +83,15 @@ impl MongoConnector {
             .database(database_name)
             .list_collection_names(None)
             .await
+    }
+}
+
+impl DatabaseConnection for MongoConnector{
+    fn get_username(&self) -> &str {
+        &self.username
+    }
+
+    fn get_type(&self) -> ConnectionType {
+        self.connection_type
     }
 }

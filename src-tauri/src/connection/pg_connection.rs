@@ -1,11 +1,14 @@
 use sqlx::{postgres::PgPoolOptions, PgPool};
 
+use crate::connection::common::{ConnectionType, DatabaseConnection};
+
 pub struct PgConnector {
     username: String,
     password: String,
     host: String,
     port: u16,
     database: String,
+    connection_type: ConnectionType,
 }
 
 impl PgConnector {
@@ -22,6 +25,7 @@ impl PgConnector {
             host,
             port,
             database,
+            connection_type: ConnectionType::Postgres,
         }
     }
 
@@ -45,5 +49,15 @@ impl PgConnector {
             Err(_) => false,
         };
         Ok(connection_established)
+    }
+}
+
+impl DatabaseConnection for PgConnector {
+    fn get_username(&self) -> &str {
+        &self.username
+    }
+
+    fn get_type(&self) -> ConnectionType {
+        self.connection_type
     }
 }

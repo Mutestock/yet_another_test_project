@@ -1,11 +1,14 @@
 use redis::Client;
 
+use crate::connection::common::{ConnectionType, DatabaseConnection};
+
 pub struct RedisConnector {
     username: String,
     password: Option<String>,
     host: String,
     port: u16,
     client: Option<Client>,
+    connection_type: ConnectionType,
 }
 
 impl RedisConnector {
@@ -16,6 +19,7 @@ impl RedisConnector {
             host,
             port,
             client: None,
+            connection_type: ConnectionType::Redis,
         }
     }
 
@@ -45,8 +49,18 @@ impl RedisConnector {
     pub async fn ping(&mut self) -> Result<bool, redis::RedisError> {
         let connection_established = match self.create_connection().await {
             Ok(_) => true,
-            Err(_) => false
+            Err(_) => false,
         };
         Ok(connection_established)
+    }
+}
+
+impl DatabaseConnection for RedisConnector {
+    fn get_username(&self) -> &str {
+        &self.username
+    }
+
+    fn get_type(&self) -> ConnectionType {
+        self.connection_type
     }
 }

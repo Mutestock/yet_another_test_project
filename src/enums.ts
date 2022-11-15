@@ -1,7 +1,7 @@
-enum ConnectionTypes {
+enum ConnectionType {
     Mongo, Postgres, Redis, None
 }
 
 export {
-    ConnectionTypes
+    ConnectionType
 }

@@ -1,13 +1,13 @@
 import { defineStore } from "pinia";
 import { DatabaseOptions } from "../connectors";
-import { ConnectionTypes } from "../enums";
+import { ConnectionType } from "../enums";
 
 export const usePrimaryStore = defineStore('primaryStore', {
 
     state: () => {
         let allCurrentConnections: Array<DatabaseOptions> = new Array<DatabaseOptions>();
         return {
-            currentNewConnectionSelection: ConnectionTypes.None,
+            currentNewConnectionSelection: ConnectionType.None,
             allCurrentConnections: allCurrentConnections
         }
     },
@@ -15,15 +15,15 @@ export const usePrimaryStore = defineStore('primaryStore', {
         connectionType: (state) => state.currentNewConnectionSelection,
         // For sidenav. Shows which connection types can be selected for generation
         availableConnections: (state) =>
-            Object.values(ConnectionTypes)
-                .map(x => x !== ConnectionTypes.None && x !== state.currentNewConnectionSelection),
+            Object.values(ConnectionType)
+                .map(x => x !== ConnectionType.None && x !== state.currentNewConnectionSelection),
     },
     actions: {
-        setCurrentConnectionSelection(connectionType: ConnectionTypes) {
+        setCurrentConnectionSelection(connectionType: ConnectionType) {
             this.currentNewConnectionSelection = connectionType
         },
         resetCurrentConnectionSelection() {
-            this.currentNewConnectionSelection = ConnectionTypes.None
+            this.currentNewConnectionSelection = ConnectionType.None
         },
         pushToAllCurrentConnections(databaseConnection: DatabaseOptions) {
             this.allCurrentConnections.push(databaseConnection)
