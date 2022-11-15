@@ -10,11 +10,11 @@ pub struct NavigationStorage {
 #[tauri::command]
 pub fn get_currently_selected_new_connection(
     navigation_storage: State<NavigationStorage>,
-) -> Result<ConnectionType, tauri::InvokeError> {
+) -> Result<usize, tauri::InvokeError> {
     Ok(*navigation_storage
         .currently_selected_new_connection
         .lock()
-        .unwrap())
+        .unwrap() as usize)
 }
 
 #[tauri::command]
