@@ -11,14 +11,6 @@ pub struct NavigationStorage {
 pub fn get_currently_selected_new_connection(
     navigation_storage: State<NavigationStorage>,
 ) -> Result<ConnectionType, tauri::InvokeError> {
-    println!(
-        "{:?}",
-        navigation_storage
-            .currently_selected_new_connection
-            .lock()
-            .unwrap()
-    );
-
     Ok(*navigation_storage
         .currently_selected_new_connection
         .lock()
