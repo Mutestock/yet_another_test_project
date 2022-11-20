@@ -26,7 +26,7 @@ async function pingMongo() {
         <input id="password-input" v-model="password" placeholder="Password" type="password" />
         <input id="host-input" v-model="host" placeholder="Host" />
         <input id="port-input" v-model="port" placeholder="Port" />
-        <button type="button" @click=pingMongo()>Ping Mongo</button>
+        <button type="button" @click=pingMongo()>Connect</button>
     </div>
     <p>{{ pingResult }}</p>
 </template>

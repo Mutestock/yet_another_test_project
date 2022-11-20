@@ -1,6 +1,5 @@
-
-use mongodb::{bson::doc, options::ClientOptions, Client, Database};
 use crate::connection::common::{ConnectionType, DatabaseConnection};
+use mongodb::{bson::doc, options::ClientOptions, Client, Database};
 
 pub struct MongoConnector {
     username: String,
@@ -29,7 +28,7 @@ impl MongoConnector {
             port,
             database,
             client: None,
-            connection_type: ConnectionType::Mongo
+            connection_type: ConnectionType::Mongo,
         }
     }
 
@@ -86,7 +85,7 @@ impl MongoConnector {
     }
 }
 
-impl DatabaseConnection for MongoConnector{
+impl DatabaseConnection for MongoConnector {
     fn get_username(&self) -> &str {
         &self.username
     }

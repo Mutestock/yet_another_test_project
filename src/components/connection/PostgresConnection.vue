@@ -27,7 +27,7 @@ async function pingPostgres() {
         <input id="host-input" v-model="host" placeholder="Host" />
         <input id="port-input" v-model="port" placeholder="Port" />
         <input id="database-input" v-model="database" placeholder="Database" />
-        <button type="button" @click=pingPostgres()>Ping Postgres</button>
+        <button type="button" @click=pingPostgres()>Connect</button>
     </div>
     <p>{{ pingResult }}</p>
 </template>

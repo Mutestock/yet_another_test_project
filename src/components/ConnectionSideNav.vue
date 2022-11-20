@@ -2,9 +2,7 @@
 </script>
 
 <template>
-
+    <div class="bg-yellow h-screen">
+        Side nav
+    </div>
 </template>
-
-<style>
-
-</style>

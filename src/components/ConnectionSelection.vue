@@ -22,20 +22,23 @@ async function setCurrentConnectionSelection(connectionType: ConnectionType) {
 </script>
 
 <template>
-    <div v-if="currentDatabaseTypeSelection == ConnectionType.Mongo">
-        <MongoConnection />
+    <div>
+        <div v-if="currentDatabaseTypeSelection == ConnectionType.Mongo">
+            <MongoConnection />
+        </div>
+        <div v-else-if="currentDatabaseTypeSelection == ConnectionType.Postgres">
+            <PostgresConnection />
+        </div>
+        <div v-else-if="currentDatabaseTypeSelection == ConnectionType.Redis">
+            <RedisConnection />
+        </div>
+        <div v-else>
+            <p>Choose a connection type</p>
+            <button type="button" @click=setCurrentConnectionSelection(ConnectionType.Mongo)>MongoDB</button>
+            <button type="button" @click=setCurrentConnectionSelection(ConnectionType.Postgres)>Postgres</button>
+            <button type="button" @click=setCurrentConnectionSelection(ConnectionType.Redis)>Redis</button>
+        </div>
+        {{ currentDatabaseTypeSelection }} 
     </div>
-    <div v-else-if="currentDatabaseTypeSelection == ConnectionType.Postgres">
-        <PostgresConnection />
-    </div>
-    <div v-else-if="currentDatabaseTypeSelection == ConnectionType.Redis">
-        <RedisConnection />
-    </div>
-    <div v-else>
-        <p>Choose a connection type</p>
-        <button type="button" @click=setCurrentConnectionSelection(ConnectionType.Mongo)>MongoDB</button>
-        <button type="button" @click=setCurrentConnectionSelection(ConnectionType.Postgres)>Postgres</button>
-        <button type="button" @click=setCurrentConnectionSelection(ConnectionType.Redis)>Redis</button>
-    </div>
-    {{ currentDatabaseTypeSelection }}
 </template>
+
