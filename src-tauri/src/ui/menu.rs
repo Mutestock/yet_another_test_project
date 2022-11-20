@@ -37,8 +37,8 @@ pub fn handle_menu_event(event: WindowMenuEvent) {
         }
         "new_connection" => event
             .window()
-            .emit("new_window", MenuCommandBump(true))
-            .expect("Command new window failed from menu"),
+            .emit("new_connection", MenuCommandBump(true))
+            .expect("Command new connection failed from menu"),
         "import" => event
             .window()
             .emit("import", MenuCommandBump(true))

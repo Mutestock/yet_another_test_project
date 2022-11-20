@@ -22,5 +22,5 @@ pub async fn ping_mongo(
     .expect("Connection succeeded")
     .ping()
     .await
-    .expect("Ping failed"))
+    .expect("Ping succeeded"))
 }

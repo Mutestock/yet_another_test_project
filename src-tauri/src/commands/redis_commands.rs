@@ -21,7 +21,7 @@ pub async fn ping_redis(
     )
     .create_connection()
     .await
-    .expect("connection succesful")
+    .expect("connection successful")
     .ping()
     .await
     .expect("Ping successful"))
