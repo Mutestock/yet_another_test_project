@@ -12,6 +12,7 @@
   "dependencies": {
     "@tauri-apps/api": "^1.1.0",
     "pinia": "^2.0.23",
+    "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log#dev",
     "vue": "^3.2.37",
     "vue-router": "^4.1.6"
   },

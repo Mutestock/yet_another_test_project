@@ -15,6 +15,7 @@ use commands::{
 use state::navigation::{
     get_currently_selected_new_connection, set_currently_selected_new_connection, NavigationStorage,
 };
+use tauri_plugin_log::{LogTarget, LoggerBuilder};
 use ui::menu::{create_menu, handle_menu_event};
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -27,8 +28,13 @@ fn greet(name: &str) -> String {
 fn main() {
     tauri::Builder::default()
         .menu(create_menu())
-        .on_menu_event(|event|handle_menu_event(event))
+        .on_menu_event(|event| handle_menu_event(event))
         .manage(NavigationStorage::default())
+        .plugin(
+            LoggerBuilder::default()
+                .targets([LogTarget::LogDir, LogTarget::Stdout])
+                .build(),
+        )
         .invoke_handler(tauri::generate_handler![
             greet,
             ping_mongo,

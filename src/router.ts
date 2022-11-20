@@ -1,6 +1,6 @@
 import Home from "./components/Home.vue";
 import ConnectionSelection from "./components/ConnectionSelection.vue";
-import { createRouter, RouteRecordRaw, createWebHistory} from "vue-router";
+import { createRouter, RouteRecordRaw, createWebHistory, Router } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
     }
 ];
 
-const router = createRouter({
+const router: Router = createRouter({
     history: createWebHistory(),
     routes
 });

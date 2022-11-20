@@ -11,17 +11,29 @@ version = "0.0.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = {version = "1.1", features = [] }
+tauri-build = { version = "1.1", features = [] }
 
 [dependencies]
-serde = {version = "1.0", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-tauri = {version = "1.1", features = ["api-all"] }
+tauri = { version = "1.1", features = ["api-all"] }
+log = "0.4.17"
+tauri-plugin-log = { git = "https://github.com/tauri-apps/tauri-plugin-log", branch = "dev" }
 
 
 # Database
 mongodb = "2.3.1"
-sqlx = {version = "0.6.2", features = ["mssql", "postgres", "mysql", "sqlite", "any", "uuid", "chrono", "json", "runtime-tokio-rustls"] }
+sqlx = { version = "0.6.2", features = [
+    "mssql",
+    "postgres",
+    "mysql",
+    "sqlite",
+    "any",
+    "uuid",
+    "chrono",
+    "json",
+    "runtime-tokio-rustls",
+] }
 redis = { version = "0.22.1", features = ["json", "tokio-comp"] }
 
 [features]
