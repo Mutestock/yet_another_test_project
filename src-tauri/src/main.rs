@@ -30,7 +30,6 @@ fn main() {
                 .build(),
         )
         .invoke_handler(tauri::generate_handler![
-            greet,
             ping_mongo,
             ping_postgres,
             ping_redis,
