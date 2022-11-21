@@ -9,7 +9,7 @@ pub struct PgConnector {
     port: u16,
     database: String,
     connection_type: ConnectionType,
-}
+} 
 
 impl PgConnector {
     pub fn new(

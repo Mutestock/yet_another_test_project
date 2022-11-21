@@ -18,6 +18,7 @@ use state::navigation::{
 use tauri_plugin_log::{LogTarget, LoggerBuilder};
 use ui::menu::{create_menu, handle_menu_event};
 
+use crate::commands::log_commands::backend_log;
 
 fn main() {
     tauri::Builder::default()
@@ -34,7 +35,8 @@ fn main() {
             ping_postgres,
             ping_redis,
             get_currently_selected_new_connection,
-            set_currently_selected_new_connection
+            set_currently_selected_new_connection,
+            backend_log
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

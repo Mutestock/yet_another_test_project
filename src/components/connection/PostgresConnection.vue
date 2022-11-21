@@ -9,7 +9,7 @@ const port = ref("")
 const database = ref("")
 const pingResult = ref(false)
 
-async function pingPostgres() {
+async function pingPostgres(): Promise<void> {
     pingResult.value = await invoke("ping_postgres", {
         username: username.value,
         password: password.value,

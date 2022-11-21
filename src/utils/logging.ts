@@ -1,9 +1,8 @@
-import { trace, info, error, attachConsole } from "tauri-plugin-log-api";
+import { invoke } from "@tauri-apps/api/tauri";
 
-const detach = await attachConsole()
-
-trace("Trace");
-info("Info");
-error("Error");
-
-detach()
+export async function backendLog(message: string, severity: string): Promise<void> {
+    await invoke("backend_log", {
+        message: message,
+        severity: severity
+    })
+}

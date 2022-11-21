@@ -1,7 +1,10 @@
 
 <script setup lang="ts">
+import { backendLog } from '../utils/logging';
 
-function bumpLog(){
+
+async function bumpLog(){
+    await backendLog("Log bumped on home page", "info")
 }
 
 

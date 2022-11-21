@@ -9,7 +9,7 @@ const host = ref("")
 const port = ref("")
 const pingResult = ref(false)
 
-async function pingRedis() {
+async function pingRedis(): Promise<void> {
     pingResult.value = await invoke("ping_redis", {
         username: username.value,
         password: password.value,

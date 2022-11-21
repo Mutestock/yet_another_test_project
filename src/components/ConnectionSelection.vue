@@ -8,16 +8,16 @@ import RedisConnection from './connection/RedisConnection.vue';
 
 const currentDatabaseTypeSelection = ref(ConnectionType.None)
 
-async function getCurrentDatabaseTypeSelection() {
+async function getCurrentDatabaseTypeSelection(): Promise<void> {
     let databaseType = await invoke("get_currently_selected_new_connection", {})
     currentDatabaseTypeSelection.value = databaseType as ConnectionType;
 }
 
-async function setCurrentConnectionSelection(connectionType: ConnectionType) {
+async function setCurrentConnectionSelection(connectionType: ConnectionType): Promise<void> {
     await invoke("set_currently_selected_new_connection", {
         whatevs: connectionType as number
     });
-    currentDatabaseTypeSelection.value = await invoke("get_currently_selected_new_connection", {}) as ConnectionType
+    currentDatabaseTypeSelection.value = await invoke("get_currently_selected_new_connection", {}) 
 }
 </script>
 

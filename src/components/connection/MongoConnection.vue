@@ -9,7 +9,7 @@ const host = ref("")
 const port = ref("")
 const pingResult = ref(false)
 
-async function pingMongo() {
+async function pingMongo(): Promise<void> {
     pingResult.value = await invoke("ping_mongo", {
         username: username.value,
         password: password.value,
