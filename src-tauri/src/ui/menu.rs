@@ -16,6 +16,7 @@ fn create_file_menu() -> Submenu {
     );
     let import = CustomMenuItem::new("import".to_string(), "Import");
     let export = CustomMenuItem::new("export".to_string(), "Export");
+    let bump_log: CustomMenuItem = CustomMenuItem::new("bump_log".to_string(),"Bump Log");
     Submenu::new(
         "File",
         Menu::new()
@@ -23,6 +24,7 @@ fn create_file_menu() -> Submenu {
             .add_item(import)
             .add_item(export)
             .add_item(database_to_application)
+            .add_item(bump_log)
             .add_item(quit),
     )
 }
@@ -47,6 +49,10 @@ pub fn handle_menu_event(event: WindowMenuEvent) {
             .window()
             .emit("export", MenuCommandBump(true))
             .expect("Command export failed from menu"),
+        "bump_log" => event
+            .window()
+            .emit("bump_log", MenuCommandBump(true))
+            .expect("Command bump_log failed from menu"),
         "database_to_application" => event
             .window()
             .emit("database_to_application", MenuCommandBump(true))
