@@ -4,8 +4,9 @@ import "./style.css";
 import App from "./App.vue";
 import router from "./router";
 import {eventInit, } from "./events/menuEvents";
-eventInit()
 
+
+eventInit().then(x=>x)
 
 
 const pinia = createPinia()
