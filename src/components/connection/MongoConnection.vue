@@ -21,6 +21,7 @@ async function pingMongo(): Promise<void> {
 </script>
 
 <template>
+    <p>New Mongo Connection</p>
     <div class="card">
         <input id="username-input" v-model="username" placeholder="Username" />
         <input id="password-input" v-model="password" placeholder="Password" type="password" />

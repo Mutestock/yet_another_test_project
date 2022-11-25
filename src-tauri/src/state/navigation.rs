@@ -19,13 +19,13 @@ pub fn get_currently_selected_new_connection(
 
 #[tauri::command]
 pub fn set_currently_selected_new_connection(
-    whatevs: usize,
+    connection_numeric: usize,
     navigation_storage: State<NavigationStorage>,
 ) -> Result<(), tauri::InvokeError> {
     Ok(*navigation_storage
         .currently_selected_new_connection
         .lock()
-        .unwrap() = ConnectionType::try_from(whatevs).unwrap())
+        .unwrap() = ConnectionType::try_from(connection_numeric).unwrap())
 }
 
 impl Default for NavigationStorage {
@@ -34,4 +34,5 @@ impl Default for NavigationStorage {
             currently_selected_new_connection: Mutex::new(ConnectionType::None),
         }
     }
+
 }
