@@ -4,7 +4,7 @@
  
 
 <template>
-    <div>
+    <div class="h-screen rows=2 gap-8">
         <p>
             This is home
         </p>
