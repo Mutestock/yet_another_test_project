@@ -56,7 +56,7 @@ a:hover {
 h1 {
   text-align: center;
 }
-
+/*
 input,
 button {
   border-radius: 8px;
@@ -83,7 +83,7 @@ input,
 button {
   outline: none;
 }
-
+*/
 #greet-input {
   margin-right: 5px;
 }
