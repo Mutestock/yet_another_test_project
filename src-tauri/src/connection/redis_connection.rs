@@ -2,6 +2,8 @@ use redis::Client;
 
 use crate::connection::common::{ConnectionType, DatabaseConnection};
 
+
+#[derive(Clone)]
 pub struct RedisConnector {
     username: String,
     password: Option<String>,
@@ -55,6 +57,7 @@ impl RedisConnector {
     }
 }
 
+
 impl DatabaseConnection for RedisConnector {
     fn get_username(&self) -> &str {
         &self.username
@@ -64,3 +67,4 @@ impl DatabaseConnection for RedisConnector {
         self.connection_type
     }
 }
+

@@ -2,6 +2,9 @@ use sqlx::{postgres::PgPoolOptions, PgPool};
 
 use crate::connection::common::{ConnectionType, DatabaseConnection};
 
+
+
+#[derive(Clone)]
 pub struct PgConnector {
     username: String,
     password: String,

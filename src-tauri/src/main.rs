@@ -12,19 +12,27 @@ use commands::{
     mongo_commands::ping_mongo, pg_commands::ping_postgres, redis_commands::ping_redis,
 };
 
-use state::navigation::{
-    get_currently_selected_new_connection, set_currently_selected_new_connection, NavigationStorage,
+use state::{
+    active_connections::ActiveConnectionsStorage,
+    navigation::{
+        get_currently_selected_new_connection, set_currently_selected_new_connection,
+        NavigationStorage,
+    },
 };
 use tauri_plugin_log::{LogTarget, LoggerBuilder};
 use ui::menu::{create_menu, handle_menu_event};
 
-use crate::commands::log_commands::backend_log;
+use crate::commands::{
+    log_commands::backend_log, mongo_commands::new_mongo_connection,
+    pg_commands::new_postgres_connection, redis_commands::new_redis_connection,
+};
 
 fn main() {
     tauri::Builder::default()
         .menu(create_menu())
         .on_menu_event(|event| handle_menu_event(event))
         .manage(NavigationStorage::default())
+        .manage(ActiveConnectionsStorage::default())
         .plugin(
             LoggerBuilder::default()
                 .targets([LogTarget::LogDir, LogTarget::Stdout])
@@ -36,7 +44,10 @@ fn main() {
             ping_redis,
             get_currently_selected_new_connection,
             set_currently_selected_new_connection,
-            backend_log
+            backend_log,
+            new_mongo_connection,
+            new_redis_connection,
+            new_postgres_connection,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

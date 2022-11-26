@@ -48,10 +48,10 @@ directions.set("mongo", "MongoConnection");
 
 export async function handleRedirect(eventName: string): Promise<void> {
     let redirectionName = directions.get(eventName)
-    if (redirectionName){
+    if (redirectionName) {
         await redirectByEventName(redirectionName)
     }
-    else{
+    else {
         backendLog(`Front=>reroute in router pointed to invalid route: ${eventName}`, "error")
     }
 }

@@ -1,8 +1,10 @@
 <script setup lang="ts">
+
+
 </script>
 
 <template>
-    <div class="bg-yellow h-screen">
+    <div>
         Side nav
     </div>
 </template>

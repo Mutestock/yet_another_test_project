@@ -1,7 +1,7 @@
 use std::sync::Mutex;
 use tauri::State;
 
-use crate::connection::common::{ConnectionType, DatabaseConnection};
+use crate::connection::common::{ConnectionType};
 
 pub struct NavigationStorage {
     currently_selected_new_connection: Mutex<ConnectionType>,

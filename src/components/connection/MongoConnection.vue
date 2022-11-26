@@ -22,7 +22,7 @@ async function pingMongo(): Promise<void> {
 
 <template>
     <p>New Mongo Connection</p>
-    <div class="card">
+    <div class="h-screen rows=2 gap-8">
         <input id="username-input" v-model="username" placeholder="Username" />
         <input id="password-input" v-model="password" placeholder="Password" type="password" />
         <input id="host-input" v-model="host" placeholder="Host" />

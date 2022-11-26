@@ -1,6 +1,8 @@
 use crate::connection::common::{ConnectionType, DatabaseConnection};
 use mongodb::{bson::doc, options::ClientOptions, Client, Database};
 
+
+#[derive(Clone)]
 pub struct MongoConnector {
     username: String,
     password: String,

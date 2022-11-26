@@ -2,7 +2,7 @@ use serde::{Serialize, Deserialize};
 use core::fmt;
 use std::error::Error;
 
-pub trait DatabaseConnection{
+pub trait DatabaseConnection: Send + Sync{
     fn get_username(&self) -> &str;
     fn get_type(&self) -> ConnectionType;
 }
