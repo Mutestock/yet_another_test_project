@@ -22,9 +22,12 @@ use state::{
 use tauri_plugin_log::{LogTarget, LoggerBuilder};
 use ui::menu::{create_menu, handle_menu_event};
 
-use crate::commands::{
-    log_commands::backend_log, mongo_commands::new_mongo_connection,
-    pg_commands::new_postgres_connection, redis_commands::new_redis_connection,
+use crate::{
+    commands::{
+        log_commands::backend_log, mongo_commands::new_mongo_connection,
+        pg_commands::new_postgres_connection, redis_commands::new_redis_connection,
+    },
+    state::active_connections::get_all_active_connections,
 };
 
 fn main() {
@@ -48,6 +51,7 @@ fn main() {
             new_mongo_connection,
             new_redis_connection,
             new_postgres_connection,
+            get_all_active_connections,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

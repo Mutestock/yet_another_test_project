@@ -1,7 +1,9 @@
 use std::sync::Mutex;
 
+use tauri::State;
+
 use crate::connection::{
-    common::DatabaseConnection, mongo_connection::MongoConnector, pg_connection::PgConnector,
+    common::{DatabaseConnection, GenericConnection}, mongo_connection::MongoConnector, pg_connection::PgConnector,
     redis_connection::RedisConnector,
 };
 
@@ -21,4 +23,21 @@ impl Default for ActiveConnectionsStorage {
             all_postgres_connections: Mutex::new(vec![]),
         }
     }
+}
+
+#[tauri::command]
+pub async fn get_all_active_connections(
+    active_connection_storage: State<'_, ActiveConnectionsStorage>,
+) -> Result<Vec<GenericConnection>, tauri::InvokeError> {
+
+    let generic_connections = active_connection_storage
+        .all_active_connections
+        .lock()
+        .unwrap()
+        .iter()
+        .map(|x|x.to_generic_connection())
+        .collect();
+
+
+    Ok(generic_connections)
 }

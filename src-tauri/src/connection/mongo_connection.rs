@@ -95,4 +95,7 @@ impl DatabaseConnection for MongoConnector {
     fn get_type(&self) -> ConnectionType {
         self.connection_type
     }
+    fn box_clone(&self) -> Box<dyn DatabaseConnection> {
+        Box::new(self.clone())
+    }
 }
